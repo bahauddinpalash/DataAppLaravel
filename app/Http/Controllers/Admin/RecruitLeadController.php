@@ -15,7 +15,7 @@ class RecruitLeadController extends Controller
      */
     public function index()
     {
-        $leads = RecruitLead::with('candidate')->get();
+        $leads = RecruitLead::with('candidate')->paginate(10);
         return view('admin.recruiter.lead.index', compact('leads'));
     }
 

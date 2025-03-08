@@ -65,6 +65,7 @@
                 @endforelse
             </tbody>
         </table>
+        {{ $candidates->links() }}
     </div>
 </div>
 @endsection

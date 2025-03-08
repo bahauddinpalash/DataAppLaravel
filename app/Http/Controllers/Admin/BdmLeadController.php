@@ -14,8 +14,8 @@ class BdmLeadController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {
-        $leads = BdmLead::with('client')->get();
+    { 
+        $leads = BdmLead::with('client')->paginate(10);
         return view('admin.bdm.lead.index', compact('leads'));
     }
 

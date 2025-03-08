@@ -34,16 +34,16 @@ Route::prefix('recruiter')->middleware('guest:recruiter')->group(function () {
     Route::post('login', [LoginController::class, 'store']);
 
     Route::get('forgot-password', [PasswordResetLinkController::class, 'create'])
-        ->name('password.request');
+        ->name('recruiter_password.request');
 
     Route::post('forgot-password', [PasswordResetLinkController::class, 'store'])
-        ->name('password.email');
+        ->name('recruiter_password.email');
 
     Route::get('reset-password/{token}', [NewPasswordController::class, 'create'])
-        ->name('password.reset');
+        ->name('recruiter_password.reset');
 
     Route::post('reset-password', [NewPasswordController::class, 'store'])
-        ->name('password.store');
+        ->name('recruiter_password.store');
        
 
 Route::get('/send-test-email', function () {

@@ -18,7 +18,7 @@ class CandidateController extends Controller
 
         $candidates = Candidate::when($position, function ($query, $position) {
             return $query->where('position', $position);
-        })->get();
+        })->paginate(10);
 
         $positions = Candidate::select('position')->distinct()->pluck('position');
 
@@ -57,9 +57,9 @@ class CandidateController extends Controller
             'interview_availability' => 'required|string|max:255',
 
             // Visa and Location Information
-            'visa_type' => 'required|string|max:255',
-            'visa_expiry_date' => 'required|date',
-            'current_location' => 'required|string|max:255',
+            // 'visa_type' => 'required|string|max:255',
+            // 'visa_expiry_date' => 'required|date',
+            // 'current_location' => 'required|string|max:255',
 
             // Additional Details
             'job_change_reason' => 'required|string|max:255',
@@ -139,9 +139,9 @@ class CandidateController extends Controller
             'interview_availability' => 'required|string|max:255',
 
             // Visa and Location Information
-            'visa_type' => 'required|string|max:255',
-            'visa_expiry_date' => 'required|date',
-            'current_location' => 'required|string|max:255',
+            // 'visa_type' => 'required|string|max:255',
+            // 'visa_expiry_date' => 'required|date',
+            // 'current_location' => 'required|string|max:255',
 
             // Additional Details
             'job_change_reason' => 'required|string|max:255',
@@ -167,6 +167,6 @@ class CandidateController extends Controller
         $candidate = Candidate::findOrFail($id);
         $candidate->delete();
 
-        return back()->with('success', 'Candidate deleted successfully.');
+        return redirect()->route('candidates.index')->with('success', 'Candidate deleted successfully.');
     }
 }

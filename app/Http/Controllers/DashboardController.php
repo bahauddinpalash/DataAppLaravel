@@ -6,14 +6,14 @@ use App\Models\BdmLead;
 use App\Models\Client;
 use App\Models\Candidate;
 use App\Models\RecruitLead;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
     // BDM Dashboard
     public function Bdmdashboard() { 
         $clients = Client::limit(5)->get(); 
-        $leads = BdmLead::limit(5)->get();
+        $leads = BdmLead::limit(5)->where('created_by', Auth::user()->name)->get();
         
         return view('bdm.dashboard', compact('clients', 'leads')); 
     }
@@ -21,7 +21,7 @@ class DashboardController extends Controller
     // Recruit Dashboard
     public function Recruitdashboard() { 
         $candidates = Candidate::limit(5)->get();  // Fetch Candidates
-        $leads = RecruitLead::limit(5)->get();  // Fetch RecruitLeads
+        $leads = RecruitLead::limit(5)->where('created_by', Auth::user()->name)->get();  // Fetch RecruitLeads
 
         return view('recruiter.dashboard', compact('candidates', 'leads')); 
     }

@@ -45,4 +45,14 @@ class Bdm extends Authenticatable
             'password' => 'hashed',
         ];
     }
+    
+    public function sendPasswordResetNotification($token)
+    {
+        $url = url(route('bdm_password.reset', [
+            'token' => $token,
+            'email' => $this->email,
+        ]));
+
+        $this->notify(new \App\Notifications\ResetPasswordNotification($url));
+    }
 }

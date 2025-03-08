@@ -132,7 +132,11 @@
                 </div>
             <div class="mb-4 text-end">
                 <a href="{{ route('admin-candidates.edit', $candidate->id) }}" class="btn btn-primary">Edit</a>
-                <a href="{{ route('admin-candidates.index') }}" class="btn btn-secondary">Back to List</a>
+                <form action="{{ route('admin-candidates.destroy', $candidate->id) }}" method="POST" class="d-inline">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this candidate?')">Delete</button>
+                </form>
             </div>
         </div>
     </div>

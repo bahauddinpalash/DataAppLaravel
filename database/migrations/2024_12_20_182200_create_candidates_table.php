@@ -33,9 +33,9 @@ return new class extends Migration
             $table->string('interview_availability');
 
             // Visa and Location Information
-            $table->string('visa_type');
-            $table->date('visa_expiry_date');
-            $table->string('current_location');
+            $table->string('visa_type')->nullable();
+            $table->date('visa_expiry_date')->nullable();
+            $table->string('current_location')->nullable();
 
             // Additional Details
             $table->string('job_change_reason');

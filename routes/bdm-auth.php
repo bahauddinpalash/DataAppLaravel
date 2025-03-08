@@ -15,15 +15,15 @@ use App\Http\Controllers\Auth\PasswordController;
 use App\Http\Controllers\Bdm\Auth\LoginController;
 use App\Http\Controllers\Bdm\SalesActivityController;
 use App\Http\Controllers\Bdm\ClientResponseController;
-use App\Http\Controllers\Auth\PasswordResetLinkController;
-use App\Http\Controllers\Bdm\Auth\RegisteredUserController;
-use App\Http\Controllers\Auth\NewPasswordController;
+use App\Http\Controllers\Bdm\Auth\PasswordResetLinkController;
+// use App\Http\Controllers\Bdm\Auth\RegisteredUserController;
+use App\Http\Controllers\Bdm\Auth\NewPasswordController;
 
 Route::prefix('bdm')->middleware('guest:bdm')->group(function () {
     // Route::get('register', [RegisteredUserController::class, 'create'])
     //     ->name('register');
 
-    Route::post('register', [RegisteredUserController::class, 'store']);
+    // Route::post('register', [RegisteredUserController::class, 'store']);
 
     Route::get('login', [LoginController::class, 'create'])
         ->name('bdm.login');
@@ -31,16 +31,16 @@ Route::prefix('bdm')->middleware('guest:bdm')->group(function () {
     Route::post('login', [LoginController::class, 'store']);
 
     Route::get('forgot-password', [PasswordResetLinkController::class, 'create'])
-        ->name('password.request');
+        ->name('bdm_password.request');
 
     Route::post('forgot-password', [PasswordResetLinkController::class, 'store'])
-        ->name('password.email');
+        ->name('bdm_password.email');
 
     Route::get('reset-password/{token}', [NewPasswordController::class, 'create'])
-        ->name('password.reset');
+        ->name('bdm_password.reset');
 
     Route::post('reset-password', [NewPasswordController::class, 'store'])
-        ->name('password.store');
+        ->name('bdm_password.store');
 });
 
 Route::prefix('bdm')->middleware('auth:bdm')->group(function () {

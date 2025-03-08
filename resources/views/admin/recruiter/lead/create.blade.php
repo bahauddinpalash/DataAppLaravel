@@ -35,6 +35,16 @@
                 value="{{ old('lead_status') }}" 
                 required
             >
+        <div class="form-group mb-3">
+            <label for="position">Position</label>
+            <input 
+                type="text" 
+                name="position" 
+                id="position" 
+                class="form-control" 
+                value="{{ old('position') }}" 
+                required
+            >
         </div>
         <div class="form-group mb-3">
             <label for="candidate_meeting">Meeting Date</label>

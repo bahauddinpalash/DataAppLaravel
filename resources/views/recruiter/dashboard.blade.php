@@ -5,7 +5,7 @@
 <div class="container">
     <h2 class="pt-2 mb-4">Recruiter Dashboard</h2>
     <div class="row">
-        <div class="col-md-6 mb-4">
+        <div class="col-md-12 mb-4">
             <h2>Candidates</h2>
             <div class="table-responsive">
                 <table class="table table-bordered table-striped">
@@ -42,7 +42,7 @@
                 </table>
             </div>
         </div>
-        <div class="col-md-6 mb-4">
+        <div class="col-md-12 mb-4">
             <h2>Datas</h2>
             <div class="table-responsive">
                 <table class="table table-bordered table-striped">

@@ -44,7 +44,7 @@
   <div class="content-wrapper">
     <!-- Main content -->
     <section class="content">
-      <div class="container-fluid">
+      <div class="container-fluid pb-2">
         <main>
             @yield('content')
             {{-- {{ $slot }} --}}
@@ -56,7 +56,7 @@
   </div>
   <!-- /.content-wrapper -->
   <footer class="main-footer">
-    <strong>Copyright &copy; 2024 <a href="https://nexroar.com" target="blank">Nexroar</a>.</strong>
+    <strong>Copyright &copy; 2025 <a href="https://nexroar.com" target="blank">Nexroar</a>.</strong>
     All rights reserved.
     {{-- <div class="float-right d-none d-sm-inline-block">
       <b>Version</b> 3.2.0

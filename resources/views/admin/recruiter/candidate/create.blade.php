@@ -107,15 +107,15 @@
                 <div class="row mb-3">
                     <div class="col-md-4">
                         <label for="visa_type" class="form-label">Visa Type</label>
-                        <input type="text" name="visa_type" id="visa_type" class="form-control" placeholder="Enter visa type" value="{{ old('visa_type') }}" required>
+                        <input type="text" name="visa_type" id="visa_type" class="form-control" placeholder="Enter visa type" value="{{ old('visa_type') }}">
                     </div>
                     <div class="col-md-4">
                         <label for="visa_expiry_date" class="form-label">Visa Expiry Date</label>
-                        <input type="date" name="visa_expiry_date" id="visa_expiry_date" class="form-control" value="{{ old('visa_expiry_date') }}" required>
+                        <input type="date" name="visa_expiry_date" id="visa_expiry_date" class="form-control" value="{{ old('visa_expiry_date') }}">
                     </div>
                     <div class="col-md-4">
                         <label for="current_location" class="form-label">Current Location</label>
-                        <input type="text" name="current_location" id="current_location" class="form-control" placeholder="Enter current location" value="{{ old('current_location') }}" required>
+                        <input type="text" name="current_location" id="current_location" class="form-control" placeholder="Enter current location" value="{{ old('current_location') }}">
                     </div>
                 </div>
 

@@ -18,7 +18,7 @@ class RecruitLeadController extends Controller
         // Fetch leads created by the logged-in recruiter
         $leads = RecruitLead::with('candidate')
             ->where('created_by', Auth::user()->name)
-            ->get();
+            ->paginate(10);
 
         return view('recruiter.lead.index', compact('leads'));
     }

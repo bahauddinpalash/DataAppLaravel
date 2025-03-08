@@ -133,6 +133,16 @@
                 </div>
             </div>
 
+            <!-- Edit and Delete Buttons -->
+            <div class="d-flex justify-content-start mt-4">
+                <a href="{{ route('candidates.edit', $candidate->id) }}" class="btn btn-primary mr-2">Edit</a>
+                <form action="{{ route('candidates.destroy', $candidate->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this candidate?');">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+            </div>
+
         </div>
     </div>
 </div>

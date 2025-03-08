@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Recruiter\Auth;
+namespace App\Http\Controllers\Admin\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Auth\Events\PasswordReset;
@@ -19,7 +19,7 @@ class NewPasswordController extends Controller
      */
     public function create(Request $request): View
     {
-        return view('recruiter.auth.reset-password', ['request' => $request]);
+        return view('admin.auth.reset-password', ['request' => $request]);
     }
 
     /**
@@ -36,7 +36,7 @@ class NewPasswordController extends Controller
         ]);
 
         // Use the BDM-specific password broker
-        $status = Password::broker('recruiters')->reset(
+        $status = Password::broker('admins')->reset(
             $request->only('email', 'password', 'password_confirmation', 'token'),
             function ($user) use ($request) {
                 $user->forceFill([
@@ -50,7 +50,7 @@ class NewPasswordController extends Controller
 
         // Redirect to the BDM login page after a successful password reset
         return $status == Password::PASSWORD_RESET
-            ? redirect()->route('recruiter.login')->with('status', __($status))
+            ? redirect()->route('admin.login')->with('status', __($status))
             : back()->withInput($request->only('email'))
                 ->withErrors(['email' => __($status)]);
     }

@@ -18,7 +18,7 @@ class CandidatesController extends Controller
 
     $candidates = Candidate::when($position, function ($query, $position) {
         return $query->where('position', $position);
-    })->get();
+    })->paginate(10);
 
     $positions = Candidate::select('position')->distinct()->pluck('position');
 
@@ -52,9 +52,9 @@ class CandidatesController extends Controller
             'highest_qualification' => 'required|string|max:255',
             'notice_period' => 'required|string|max:50',
             'interview_availability' => 'required|string|max:255',
-            'visa_type' => 'required|string|max:255',
-            'visa_expiry_date' => 'required|date',
-            'current_location' => 'required|string|max:255',
+            // 'visa_type' => 'required|string|max:255',
+            // 'visa_expiry_date' => 'required|date',
+            // 'current_location' => 'required|string|max:255',
             'job_change_reason' => 'required|string|max:255',
             'cv' => 'nullable|file|mimes:pdf,doc,docx|max:2048',
             'position' => 'required|string|max:255',
@@ -153,6 +153,6 @@ class CandidatesController extends Controller
         $candidate = Candidate::findOrFail($id);
         $candidate->delete();
 
-        return back()->with('success', 'Candidate deleted successfully.');
+        return redirect()->route('admin-candidates.index')->with('success', 'Candidate deleted successfully.');
     }
 }

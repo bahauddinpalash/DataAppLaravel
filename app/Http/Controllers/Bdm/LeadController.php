@@ -18,7 +18,7 @@ class LeadController extends Controller
         // Fetch leads created by the logged-in BDM
         $leads = BdmLead::with('client')
             ->where('created_by', Auth::user()->name)
-            ->get();
+            ->paginate(10);
 
         return view('bdm.lead.index', compact('leads'));
     }

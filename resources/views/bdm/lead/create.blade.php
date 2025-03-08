@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="container">
-    <h4 class="pt-2">Edit Data</h4>
+    <h4 class="pt-2">Create Data</h4>
     
     @if ($errors->any())
         <div class="alert alert-danger">
@@ -15,16 +15,15 @@
         </div>
     @endif
 
-    <form action="{{ route('bdm-leads.update', $lead->id) }}" method="POST">
+    <form action="{{ route('bdm-leads.store') }}" method="POST">
         @csrf
-        @method('PUT')
 
         <div class="form-group mb-3">
             <label for="client_id">Client</label>
             <select name="client_id" id="client_id" class="form-control" required>
                 <option value="">Select Client</option>
                 @foreach($clients as $client)
-                    <option value="{{ $client->id }}" @if($client->id == $lead->client_id) selected @endif>{{ $client->client_name }}</option>
+                    <option value="{{ $client->id }}">{{ $client->client_name }}</option>
                 @endforeach
             </select>
         </div>
@@ -36,7 +35,7 @@
                 class="form-control" 
                 name="lead_status" 
                 id="lead_status" 
-                value="{{ old('lead_status', $lead->lead_status) }}" 
+                value="{{ old('lead_status') }}" 
                 required
             >
         </div>
@@ -48,7 +47,7 @@
                 class="form-control" 
                 name="client_meeting" 
                 id="client_meeting" 
-                value="{{ old('client_meeting', \Carbon\Carbon::parse($lead->client_meeting)->format('Y-m-d\TH:i')) }}"
+                value="{{ old('client_meeting') }}"
             >
         </div>
 
@@ -59,11 +58,11 @@
                 name="remark" 
                 id="remark" 
                 rows="3"
-            >{{ old('remark', $lead->remark) }}</textarea>
+            >{{ old('remark') }}</textarea>
         </div>
 
         <div class="d-flex">
-            <button type="submit" class="btn btn-primary mr-2">Update</button>
+            <button type="submit" class="btn btn-primary mr-2">Create</button>
             <a href="{{ route('bdm-leads.index') }}" class="btn btn-secondary">Cancel</a>
         </div>
     </form>

@@ -12,7 +12,7 @@ class ClientController extends Controller
     // Display all clients
     public function index()
     {
-        $clients = Client::all();
+        $clients = Client::paginate(10);
         return view('admin.bdm.client.index', compact('clients'));
     }
 
