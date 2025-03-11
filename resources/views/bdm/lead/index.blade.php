@@ -55,11 +55,11 @@
                             <div class="btn-group" role="group">
                                 <a href="{{ route('bdm-leads.show', $lead->id) }}" class="btn btn-info btn-sm" style="margin-right: 0.5rem;">View</a>
                                 <a href="{{ route('bdm-leads.edit', $lead->id) }}" class="btn btn-warning btn-sm" style="margin-right: 0.5rem;">Edit</a>
-                                <form action="{{ route('bdm-leads.destroy', $lead->id) }}" method="POST" style="display:inline-block;">
+                                {{-- <form action="{{ route('bdm-leads.destroy', $lead->id) }}" method="POST" style="display:inline-block;">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this Lead?')">Delete</button>
-                                </form>
+                                </form> --}}
                             </div>
                             
                         </td>

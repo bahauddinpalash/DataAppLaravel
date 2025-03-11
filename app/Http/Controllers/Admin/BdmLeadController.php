@@ -10,9 +10,13 @@ use Illuminate\Support\Facades\Auth;
 
 class BdmLeadController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    public function __construct()
+    {
+        $this->middleware(['permission:bdm-data-list|bdm-data-create|bdm-data-edit|bdm-data-delete'], ['only' => ['index', 'show']]);
+        $this->middleware(['permission:bdm-data-create'], ['only' => ['create', 'store']]);
+        $this->middleware(['permission:bdm-data-edit'], ['only' => ['edit', 'update']]);
+        $this->middleware(['permission:bdm-data-delete'], ['only' => ['destroy']]);
+    }
     public function index()
     { 
         $leads = BdmLead::with('client')->paginate(10);

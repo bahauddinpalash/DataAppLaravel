@@ -1,8 +1,8 @@
 @extends('admin.layouts.app')
 
 @section('content')
-<div class="container mt-4">
-    <h1 class="mb-4">Edit Role</h1>
+<div class="container">
+    <h4 class="mb-4 pt-3">Edit Role</h4>
     <form action="{{ route('roles.update', $role->id) }}" method="POST">
         @csrf
         @method('PUT')

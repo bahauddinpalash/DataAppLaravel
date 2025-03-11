@@ -119,14 +119,14 @@ class RecruitLeadController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($id)
-    {
-        $lead = RecruitLead::where('id', $id)
-            ->where('created_by', Auth::user()->name)
-            ->firstOrFail();
+    // public function destroy($id)
+    // {
+    //     $lead = RecruitLead::where('id', $id)
+    //         ->where('created_by', Auth::user()->name)
+    //         ->firstOrFail();
 
-        $lead->delete();
+    //     $lead->delete();
 
-        return redirect()->route('leads.index')->with('success', 'Lead deleted successfully.');
-    }
+    //     return redirect()->route('leads.index')->with('success', 'Lead deleted successfully.');
+    // }
 }

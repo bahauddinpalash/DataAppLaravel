@@ -52,11 +52,11 @@
                         <td>
                             <a href="{{ route('candidates.show', $candidate->id) }}" class="btn btn-sm btn-info">View</a>
                             <a href="{{ route('candidates.edit', $candidate->id) }}" class="btn btn-sm btn-warning">Edit</a>
-                            <form action="{{ route('candidates.destroy', $candidate->id) }}" method="POST" style="display: inline-block;">
+                            {{-- <form action="{{ route('candidates.destroy', $candidate->id) }}" method="POST" style="display: inline-block;">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this candidate?');">Delete</button>
-                            </form>
+                            </form> --}}
                         </td>
                     </tr>
                 @empty

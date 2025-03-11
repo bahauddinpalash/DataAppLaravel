@@ -60,7 +60,13 @@ return Application::configure(basePath: dirname(__DIR__))
 
             // Default fallback redirect for unspecified conditions
             return '/login';  // Redirect to general login if no specific role matches
+            
         });
+        $middleware->alias([
+            'role' => \Spatie\Permission\Middleware\RoleMiddleware::class,
+            'permission' => \Spatie\Permission\Middleware\PermissionMiddleware::class,
+            'role_or_permission' => \Spatie\Permission\Middleware\RoleOrPermissionMiddleware::class,
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         // Handle exceptions here if necessary

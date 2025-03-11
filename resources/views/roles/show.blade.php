@@ -1,9 +1,9 @@
 @extends('admin.layouts.app')
 
 @section('content')
-<div class="container mt-4">
-    <h1 class="mb-4">Role Details</h1>
-    <div class="mb-3">
+<div class="container">
+    <h4 class="mb-4 pt-3">Role Details</h4>
+    <div class="mb-3"> 
         <h5>Name: {{ $role->name }}</h5>
     </div>
     <div class="mb-3">

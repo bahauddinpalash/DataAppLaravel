@@ -10,9 +10,13 @@ use Illuminate\Support\Facades\Auth;
 
 class ClientsResponseController extends Controller
 {
-    /**
-     * Display a listing of the client responses.
-     */
+    public function __construct()
+    {
+        $this->middleware(['permission:bdm-data-list|bdm-data-create|bdm-data-edit|bdm-data-delete'], ['only' => ['index', 'show']]);
+        $this->middleware(['permission:bdm-data-create'], ['only' => ['create', 'store']]);
+        $this->middleware(['permission:bdm-data-edit'], ['only' => ['edit', 'update']]);
+        $this->middleware(['permission:bdm-data-delete'], ['only' => ['destroy']]);
+    }
     public function index($bdm_lead_id)
     {
         $lead = BdmLead::findOrFail($bdm_lead_id);

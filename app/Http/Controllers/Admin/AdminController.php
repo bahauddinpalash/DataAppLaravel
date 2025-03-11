@@ -4,14 +4,19 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Admin;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash; 
 
 class AdminController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    public function __construct()
+    {
+        $this->middleware('permission:admin-list', ['only' => ['index', 'show']]);
+        $this->middleware('permission:admin-create', ['only' => ['create', 'store']]);
+        $this->middleware('permission:admin-edit', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:admin-delete', ['only' => ['destroy']]);
+    }
     public function index()
     {
         $admins = Admin::all();
@@ -22,27 +27,28 @@ class AdminController extends Controller
      * Show the form for creating a new resource.
      */
     public function create()
-    {
-        return view('user.admin.create');
+    {   
+        $roles = Role::all();
+        return view('user.admin.create', compact('roles'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
+    { 
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:admins,email',
             'password' => 'required|string|min:8|confirmed',
         ]);
 
-        Admin::create([
+        $admin = Admin::create([
             'name' => $validatedData['name'],
             'email' => $validatedData['email'],
             'password' => Hash::make($validatedData['password']),
         ]);
-
+        $admin->syncRoles($request->roles);
         return redirect()->route('admins.index')->with('success', 'Admin created successfully.');
     }
 
@@ -59,9 +65,10 @@ class AdminController extends Controller
      * Show the form for editing the specified resource.
      */
     public function edit(string $id)
-    {
+    {   
+        $roles = Role::all();
         $admin = Admin::findOrFail($id);
-        return view('user.admin.edit', compact('admin'));
+        return view('user.admin.edit', compact('admin', 'roles'));
     }
 
     /**
@@ -82,7 +89,7 @@ class AdminController extends Controller
             'email' => $validatedData['email'],
             'password' => $validatedData['password'] ? Hash::make($validatedData['password']) : $admin->password,
         ]);
-
+        $admin->syncRoles($request->roles);
         return redirect()->route('admins.index')->with('success', 'Admin updated successfully.');
     }
 

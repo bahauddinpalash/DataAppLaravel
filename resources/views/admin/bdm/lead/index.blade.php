@@ -3,8 +3,10 @@
 @section('content')
 <div class="container">
     <div class="d-flex justify-content-between align-items-center mb-3">
-        <h4 class="h4 mt-2">Datas List</h4>
+        <h4 class="h4 mt-2">Data List</h4>
+        @can('bdm-data-create')
         <a href="{{ route('admin-bdm-leads.create') }}" class="btn btn-primary mt-2">Add New Data</a>
+        @endcan
     </div>
 
     @if(session('success'))
@@ -46,15 +48,21 @@
                             </div>
                         </td>
                         <td>
-                            <div class="btn-group" role="group">
-                                <a href="{{ route('admin-bdm-leads.show', $lead->id) }}" class="btn btn-info btn-sm" style="margin-right: 0.5rem;"><i class="fas fa-eye"></i></a>
-                                <a href="{{ route('admin-bdm-leads.edit', $lead->id) }}" class="btn btn-warning btn-sm" style="margin-right: 0.5rem;"><i class="fas fa-edit"></i></a>
+                           
+                                @can('bdm-data-list')
+                                <a href="{{ route('admin-bdm-leads.show', $lead->id) }}" class="btn btn-info btn-sm">View</a>
+                                @endcan
+                                @can('bdm-data-edit')
+                                <a href="{{ route('admin-bdm-leads.edit', $lead->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                                @endcan
+                                @can('bdm-data-delete')
                                 <form action="{{ route('admin-bdm-leads.destroy', $lead->id) }}" method="POST" style="display:inline-block;">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this lead?');"><i class="fas fa-trash-alt"></i></button>
+                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this lead?');">Delete</button>
                                 </form>
-                            </div>
+                                @endcan
+                            
                         </td>
                     </tr>
                 @empty

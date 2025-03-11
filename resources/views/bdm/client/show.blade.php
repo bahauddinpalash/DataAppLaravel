@@ -47,11 +47,11 @@
 
         <div class="card-footer d-flex">
             <a href="{{ route('clients.edit', $client->id) }}" class="btn btn-warning" style="margin-right: 5px;">Edit</a>
-            <form action="{{ route('clients.destroy', $client->id) }}" method="POST" style="display:inline-block;">
+            {{-- <form action="{{ route('clients.destroy', $client->id) }}" method="POST" style="display:inline-block;">
                 @csrf
                 @method('DELETE')
                 <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this Client?');">Delete</button>
-            </form>
+            </form> --}}
         </div>
     </div>
 </div>

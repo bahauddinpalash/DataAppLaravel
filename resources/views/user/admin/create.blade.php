@@ -36,6 +36,19 @@
             <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" required>
         </div>
 
+        <div class="mb-3">
+            <label for="roles" class="form-label">Roles</label>
+            <select class="form-control" id="roles" name="roles[]" multiple>
+                    <option>-- Select Roles --</option>
+                @foreach($roles as $role)
+                    <option value="{{ $role->name }}">{{ $role->name }}</option>
+                @endforeach
+            </select>
+            @error('roles')
+                <div class="text-danger">{{ $message }}</div>
+            @enderror
+        </div>
+
         <div class="">
             <button type="submit" class="btn btn-primary">Save</button>
             <a href="{{ route('admins.index') }}" class="btn btn-secondary">Cancel</a>

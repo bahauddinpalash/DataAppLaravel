@@ -10,6 +10,11 @@
             <p class="card-text"><strong>Email:</strong> {{ $admin->email }}</p>
             <p class="card-text"><strong>Created At:</strong> {{ $admin->created_at->format('d M Y, h:i A') }}</p>
             <p class="card-text"><strong>Updated At:</strong> {{ $admin->updated_at->format('d M Y, h:i A') }}</p>
+            <p class="card-text"><strong>Roles:</strong>
+                @foreach($admin->roles as $role)
+                    <span class="badge badge-primary">{{ $role->name }}</span>
+                @endforeach
+            </p>
         </div>
     </div>
 

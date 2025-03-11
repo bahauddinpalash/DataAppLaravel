@@ -9,9 +9,13 @@ use Illuminate\Support\Facades\Hash;
 
 class RecruiterController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    public function __construct()
+    {
+        $this->middleware('permission:recruiter-list', ['only' => ['index', 'show']]);
+        $this->middleware('permission:recruiter-create', ['only' => ['create', 'store']]);
+        $this->middleware('permission:recruiter-edit', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:recruiter-delete', ['only' => ['destroy']]);
+    }
     public function index()
     {
         $recruiters = Recruiter::all();

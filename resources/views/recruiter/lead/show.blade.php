@@ -32,11 +32,11 @@
         </div>
         <div class="card-footer d-flex">
             <a href="{{ route('leads.edit', $lead->id) }}" class="btn btn-warning mr-2">Edit</a>
-            <form action="{{ route('leads.destroy', $lead->id) }}" method="POST" style="display:inline-block;">
+            {{-- <form action="{{ route('leads.destroy', $lead->id) }}" method="POST" style="display:inline-block;">
                 @csrf
                 @method('DELETE')
                 <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this lead?');">Delete</button>
-            </form>
+            </form> --}}
         </div>
     </div>
 </div>

@@ -9,9 +9,13 @@ use Illuminate\Support\Facades\Hash;
 
 class BdmController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    public function __construct()
+    {
+        $this->middleware('permission:bdm-list', ['only' => ['index', 'show']]);
+        $this->middleware('permission:bdm-create', ['only' => ['create', 'store']]);
+        $this->middleware('permission:bdm-edit', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:bdm-delete', ['only' => ['destroy']]);
+    }
     public function index()
     {
         $bdms = Bdm::all();

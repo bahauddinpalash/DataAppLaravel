@@ -116,15 +116,15 @@ class LeadController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($id)
-    {
-        // Fetch the lead if it was created by the logged-in BDM
-        $lead = BdmLead::where('id', $id)
-            ->where('created_by', Auth::user()->name)
-            ->firstOrFail();
+    // public function destroy($id)
+    // {
+    //     // Fetch the lead if it was created by the logged-in BDM
+    //     $lead = BdmLead::where('id', $id)
+    //         ->where('created_by', Auth::user()->name)
+    //         ->firstOrFail();
 
-        $lead->delete();
+    //     $lead->delete();
 
-        return redirect()->route('bdm-leads.index')->with('success', 'Lead deleted successfully.');
-    }
+    //     return redirect()->route('bdm-leads.index')->with('success', 'Lead deleted successfully.');
+    // }
 }

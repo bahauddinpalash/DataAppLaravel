@@ -57,11 +57,11 @@
                             <div class="btn-group" role="group">
                                 <a href="{{ route('leads.show', $lead->id) }}" class="btn btn-info btn-sm" style="margin-right: 0.5rem;">View</a>
                                 <a href="{{ route('leads.edit', $lead->id) }}" class="btn btn-warning btn-sm" style="margin-right: 0.5rem;">Edit</a>
-                                <form action="{{ route('leads.destroy', $lead->id) }}" method="POST" style="display:inline;">
+                                {{-- <form action="{{ route('leads.destroy', $lead->id) }}" method="POST" style="display:inline;">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">Delete</button>
-                                </form>
+                                </form> --}}
                             </div>
                         </td>
                     </tr>

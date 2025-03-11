@@ -4,7 +4,9 @@
 <div class="container">
     <div class="d-flex justify-content-between align-items-center mb-3">
         <h1 class="h4 mt-2">Clients List</h1>
-        <a href="{{ route('bdm-clients.create') }}" class="btn btn-primary mt-2">Add New Client</a>
+        @can('client-create')
+            <a href="{{ route('bdm-clients.create') }}" class="btn btn-primary mt-2">Add New Client</a>
+        @endcan
     </div>
 
     @if(session('success'))
@@ -42,13 +44,19 @@
                         <td>{{ $client->client_service_number }}</td>
                         {{-- <td>{{ $client->remarks }}</td> --}}
                         <td>
-                            <a href="{{ route('bdm-clients.show', $client->id) }}" class="btn btn-sm btn-info">View</a>
-                            <a href="{{ route('bdm-clients.edit', $client->id) }}" class="btn btn-sm btn-warning">Edit</a>
-                            <form action="{{ route('bdm-clients.destroy', $client->id) }}" method="POST" style="display: inline-block;">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this Client?');">Delete</button>
-                            </form>
+                            @can('client-list')
+                                <a href="{{ route('bdm-clients.show', $client->id) }}" class="btn btn-sm btn-info">View</a>
+                            @endcan
+                            @can('client-edit')
+                                <a href="{{ route('bdm-clients.edit', $client->id) }}" class="btn btn-sm btn-warning">Edit</a>
+                            @endcan
+                            @can('client-delete')
+                                <form action="{{ route('bdm-clients.destroy', $client->id) }}" method="POST" style="display: inline-block;">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this Client?');">Delete</button>
+                                </form>
+                            @endcan
                         </td>
                     </tr>
                 @empty

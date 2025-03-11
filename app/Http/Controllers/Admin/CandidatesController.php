@@ -9,21 +9,51 @@ use Illuminate\Support\Facades\Auth;
 
 class CandidatesController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    public function __construct()
+    {
+        $this->middleware(['permission:candidate-list|candidate-create|candidate-edit|candidate-delete'], ['only' => ['index', 'show']]);
+        $this->middleware(['permission:candidate-create'], ['only' => ['create', 'store']]);
+        $this->middleware(['permission:candidate-edit'], ['only' => ['edit', 'update']]);
+        $this->middleware(['permission:candidate-delete'], ['only' => ['destroy']]);
+    }
     public function index(Request $request)
 {
     $position = $request->input('position');
+    $createdBy = $request->input('created_by');
+    $dateFilter = $request->input('date_filter');
+    $startDate = $request->input('start_date');
+    $endDate = $request->input('end_date');
 
-    $candidates = Candidate::when($position, function ($query, $position) {
-        return $query->where('position', $position);
-    })->paginate(10);
+    $candidates = Candidate::query();
+
+    if ($position) {
+        $candidates->where('position', $position);
+    }
+
+    if ($createdBy) {
+        $candidates->where('created_by', $createdBy);
+    }
+
+    if ($dateFilter) {
+        if ($dateFilter === 'today') {
+            $candidates->whereDate('created_at', now()->toDateString());
+        } elseif ($dateFilter === 'week') {
+            $candidates->whereBetween('created_at', [now()->startOfWeek(), now()->endOfWeek()]);
+        } elseif ($dateFilter === 'month') {
+            $candidates->whereMonth('created_at', now()->month);
+        } elseif ($dateFilter === 'custom' && $startDate && $endDate) {
+            $candidates->whereBetween('created_at', [$startDate, $endDate]);
+        }
+    }
 
     $positions = Candidate::select('position')->distinct()->pluck('position');
+    $creators = Candidate::select('created_by')->distinct()->pluck('created_by');
 
-    return view('admin.recruiter.candidate.index', compact('candidates', 'positions', 'position'));
+    $candidates = $candidates->paginate(10);
+
+    return view('admin.recruiter.candidate.index', compact('candidates', 'positions', 'creators', 'position', 'createdBy', 'dateFilter'));
 }
+
 
     /**
      * Show the form for creating a new resource.

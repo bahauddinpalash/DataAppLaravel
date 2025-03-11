@@ -1,8 +1,8 @@
 @extends('admin.layouts.app')
 
 @section('content')
-<div class="container mt-4">
-    <h1 class="mb-4">Create New Role</h1>
+<div class="container">
+    <h4 class="mb-4 pt-3">Create New Role</h4>
     <form action="{{ route('roles.store') }}" method="POST">
         @csrf
         <div class="form-group mb-3">

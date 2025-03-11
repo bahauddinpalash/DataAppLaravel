@@ -10,9 +10,13 @@ use Illuminate\Support\Facades\Auth;
 
 class RecruitActivityController extends Controller
 {
-    /**
-     * Display a listing of recruit activities for a specific lead.
-     */
+    public function __construct()
+    {
+        $this->middleware(['permission:recruiter-data-list|recruiter-data-create|recruiter-data-edit|recruiter-data-delete'], ['only' => ['index', 'show']]);
+        $this->middleware(['permission:recruiter-data-create'], ['only' => ['create', 'store']]);
+        $this->middleware(['permission:recruiter-data-edit'], ['only' => ['edit', 'update']]);
+        $this->middleware(['permission:recruiter-data-delete'], ['only' => ['destroy']]);
+    }
     public function index(string $recruit_lead_id)
     {
         $lead = RecruitLead::findOrFail($recruit_lead_id);

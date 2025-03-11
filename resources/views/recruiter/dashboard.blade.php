@@ -29,11 +29,11 @@
                                     <div class="btn-group" role="group">
                                         <a href="{{ route('candidates.show', $candidate->id) }}" class="btn btn-info btn-sm mb-1 mr-1">View</a>
                                         <a href="{{ route('candidates.edit', $candidate->id) }}" class="btn btn-warning btn-sm mb-1 mr-1">Edit</a>
-                                        <form action="{{ route('candidates.destroy', $candidate->id) }}" method="POST" style="display:inline-block;">
+                                        {{-- <form action="{{ route('candidates.destroy', $candidate->id) }}" method="POST" style="display:inline-block;">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger btn-sm mb-1" onclick="return confirm('Are you sure you want to delete this Candidate?')">Delete</button>
-                                        </form>
+                                        </form> --}}
                                     </div>
                                 </td>
                             </tr>
@@ -66,11 +66,11 @@
                                     <div class="btn-group" role="group">
                                         <a href="{{ route('leads.show', $lead->id) }}" class="btn btn-info btn-sm mb-1 mr-1">View</a>
                                         <a href="{{ route('leads.edit', $lead->id) }}" class="btn btn-warning btn-sm mb-1 mr-1">Edit</a>
-                                        <form action="{{ route('leads.destroy', $lead->id) }}" method="POST" style="display:inline-block;">
+                                        {{-- <form action="{{ route('leads.destroy', $lead->id) }}" method="POST" style="display:inline-block;">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger btn-sm mb-1" onclick="return confirm('Are you sure you want to delete this Lead?')">Delete</button>
-                                        </form>
+                                        </form> --}}
                                     </div>
                                 </td>
                             </tr>

@@ -47,11 +47,11 @@
                            
                                 <a href="{{ route('clients.show', $client->id) }}" class="btn btn-info btn-sm me-1">View</a>
                                 <a href="{{ route('clients.edit', $client->id) }}" class="btn btn-warning btn-sm me-1">Edit</a>
-                                <form action="{{ route('clients.destroy', $client->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this Client?');" class="d-inline">
+                                {{-- <form action="{{ route('clients.destroy', $client->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this Client?');" class="d-inline">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-                                </form>
+                                </form> --}}
                           
                         </td>
                     </tr>

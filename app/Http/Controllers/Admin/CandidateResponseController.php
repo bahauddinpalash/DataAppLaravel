@@ -10,9 +10,13 @@ use Illuminate\Support\Facades\Auth; // Add Auth Facade
 
 class CandidateResponseController extends Controller
 {
-    /**
-     * Display a listing of the candidate responses.
-     */
+    public function __construct()
+    {
+        $this->middleware(['permission:recruiter-data-list|recruiter-data-create|recruiter-data-edit|recruiter-data-delete'], ['only' => ['index', 'show']]);
+        $this->middleware(['permission:recruiter-data-create'], ['only' => ['create', 'store']]);
+        $this->middleware(['permission:recruiter-data-edit'], ['only' => ['edit', 'update']]);
+        $this->middleware(['permission:recruiter-data-delete'], ['only' => ['destroy']]);
+    }
     public function index($recruit_lead_id)
     {
         $lead = RecruitLead::findOrFail($recruit_lead_id);
